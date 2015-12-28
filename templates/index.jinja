@@ -5,7 +5,7 @@
     <div class="form-group row">
       <label for="product" class="col-sm-2 form-control-label">Product:</label>
       <div class="col-sm-8">
-        <select class="form-control" id="product" name="product" onchange='VerifListe();'>
+        <select class="form-control" id="product" name="product" onchange='CheckList();'>
           <option value="">-----</option>
           {% for product in products %}
             <option value="{{ loop.index - 1 }}">{{ product.name }}</option>
@@ -16,19 +16,19 @@
         Price:
         <span id="product-price">
             <script type='text/javascript'>
-                var ObjListe = document.getElementById('product');
-                var ObjAffiche = document.getElementById('product-price');
-                function VerifListe() {
+                var ObjList = document.getElementById('product');
+                var ObjDisplay = document.getElementById('product-price');
+                function CheckList() {
                     {% for product in products %}
-                        if(ObjListe.options[ObjListe.selectedIndex].value == "") {
-                            ObjAffiche.innerHTML = "";
+                        if(ObjList.options[ObjList.selectedIndex].value == "") {
+                            ObjDisplay.innerHTML = "";
                         } else {
-                        if(ObjListe.options[ObjListe.selectedIndex].value == {{ loop.index - 1 }} ) {
-                            ObjAffiche.innerHTML = {{ product.price }};
+                        if(ObjList.options[ObjList.selectedIndex].value == {{ loop.index - 1 }} ) {
+                            ObjDisplay.innerHTML = {{ product.price }};
                         }}
                     {% endfor %}
                 }
-                VerifListe();
+                CheckList();
             </script>
         </span>
       </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-offset-2 col-sm-10">
-        <input type="submit" class="btn btn-primary" value="Place order">
+         <button type="submit" class="btn btn-primary">Place Order</button>
       </div>
     </div>
   </form>
